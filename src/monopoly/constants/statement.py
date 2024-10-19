@@ -95,6 +95,10 @@ class StatementBalancePatterns(RegexEnum):
         r"(?P<description>PREVIOUS BALANCE?)\s+"
         + SharedPatterns.AMOUNT_EXTENDED_WITHOUT_EOL
     )
+    TRUST = (
+        r"(?P<description>Previous Balance?)\s+"
+        + SharedPatterns.AMOUNT_EXTENDED_WITHOUT_EOL
+    )
 
 
 class CreditTransactionPatterns(RegexEnum):
@@ -136,6 +140,12 @@ class CreditTransactionPatterns(RegexEnum):
         rf"(?P<posting_date>{ISO8601.DD_MMM})\s+"
         rf"(?P<transaction_date>{ISO8601.DD_MMM})\s+"
         + SharedPatterns.DESCRIPTION
+        + SharedPatterns.AMOUNT_EXTENDED
+    )
+    TRUST = (
+        rf"(?P<posting_date>{ISO8601.DD_MMM})\s+"
+        + SharedPatterns.DESCRIPTION
+        + rf"(?P<amount_fcy>{ISO8601.DD_MMM})\s+"
         + SharedPatterns.AMOUNT_EXTENDED
     )
 
